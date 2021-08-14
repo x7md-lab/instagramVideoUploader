@@ -166,7 +166,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(204, 354)
+        Me.ClientSize = New System.Drawing.Size(204, 356)
         Me.Controls.Add(Me.Uploadlb)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Deslb)
@@ -181,6 +181,9 @@ Partial Class Form1
         Me.Controls.Add(Me.PassBox)
         Me.Controls.Add(Me.UserBox)
         Me.Controls.Add(Me.LoginBtn)
+        Me.MaximizeBox = False
+        Me.MaximumSize = New System.Drawing.Size(220, 395)
+        Me.MinimumSize = New System.Drawing.Size(220, 395)
         Me.Name = "Form1"
         Me.Text = "mmti"
         Me.ResumeLayout(False)

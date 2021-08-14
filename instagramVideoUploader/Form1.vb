@@ -88,7 +88,7 @@ Public Class Form1
             DirectCast(sender, Button).Text = IO.Path.GetFileName(filePicker.FileName)
             VideoPath = filePicker.FileName
             VideoInfo = getVideoInfo(VideoPath)
-            MsgBox(buildVideoHeader("", VideoInfo(0), VideoInfo(2), VideoInfo(1)))
+            ' MsgBox(buildVideoHeader("", VideoInfo(0), VideoInfo(2), VideoInfo(1)))
             Dim byteData As Byte() = File.ReadAllBytes(VideoPath)
             Debug.WriteLine(byteData.Length.ToString)
         End If
@@ -127,6 +127,10 @@ Public Class Form1
                     uploud_img(cookiesString, timestamp, imagepost, Heightimg, Widthimg)
                 End If
             Catch ex As WebException
+                Dim rsponString As String = New IO.StreamReader(ex.Response.GetResponseStream).ReadToEnd
+                Dim ExResponse = TryCast(ex.Response, HttpWebResponse)
+                Debug.WriteLine(rsponString)
+                Debug.WriteLine(ExResponse.StatusCode())
                 MsgBox("Can't Upload", MsgBoxStyle.Critical)
                 Uploadlb.Invoke(Sub() Uploadlb.Text = "Upload Status: Error...")
             End Try
@@ -263,8 +267,8 @@ Public Class Form1
             If rsponString IsNot Nothing Then
                 MsgBox(rsponString + "   " + ExResponse.StatusCode, MsgBoxStyle.Critical)
             End If
-            Return False
         End Try
+        Return False
     End Function
 
 
