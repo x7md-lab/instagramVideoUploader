@@ -141,7 +141,7 @@ Public Class Form1
 
     Function buildVideoHeader(id As String, duration_ms As String, vidH As String, vidW As String) As String
         ' some long Herader have value of video info 
-        Return "{""client-passthrough"":""1"",""is_igtv_video"":false,""is_sidecar"":""0"",""is_unified_video"":""0"",""media_type"":2,""for_album"":false,""video_format"":"""",""upload_id"":""" + id + """,""upload_media_duration_ms"":" + duration_ms + ",""upload_media_height"":" + vidH + ",""upload_media_width"":" + vidW + ",""video_transform"":null,""video_edit_params"":{""crop_height"":" + vidH + ",""crop_width"":" + vidW + ",""crop_x1"":0,""crop_y1"":0,""mute"":false,""trim_end"":" + (Convert.ToSingle(duration_ms) / 1000).ToString() + ",""trim_start"":0}}"
+        Return "{""client-passthrough"":""1"",""is_igtv_video"":true,""is_sidecar"":""0"",""is_unified_video"":""0"",""media_type"":2,""for_album"":false,""video_format"":"""",""upload_id"":""" + id + """,""upload_media_duration_ms"":" + duration_ms + ",""upload_media_height"":" + vidH + ",""upload_media_width"":" + vidW + ",""video_transform"":null,""video_edit_params"":{""crop_height"":" + vidH + ",""crop_width"":" + vidW + ",""crop_x1"":0,""crop_y1"":0,""mute"":false,""trim_end"":" + (Convert.ToSingle(duration_ms) / 1000).ToString() + ",""trim_start"":0}}"
     End Function
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If imagepost IsNot Nothing Then
@@ -220,7 +220,9 @@ Public Class Form1
         Dim csrftoken = Rcs.Match(acc_cookies).Groups(1).Value
         Try
             Dim en As New UTF8Encoding
-            Dim postData As String = "source_type=library&caption=" & Destb.Text.Replace(vbCrLf, "%0D%0A").Replace(" ", "+") & "&upload_id=" + id_time + "&usertags=&custom_accessibility_caption=&disable_comments=0"
+            Dim postData As String = "source_type=library&caption=" &
+                Destb.Text.Replace(vbCrLf, "%0D%0A").Replace(" ", "+") &
+                "&upload_id=" + id_time + "&usertags=&custom_accessibility_caption=&disable_comments=0&&disable_comments=0&like_and_view_counts_disabled=0&igtv_ads_toggled_on=&igtv_share_preview_to_feed=1&is_unified_video=1&video_subtitles_enabled=0"
             Dim tempcook As New CookieContainer
 
             Dim byteData As Byte() = en.GetBytes(postData)
